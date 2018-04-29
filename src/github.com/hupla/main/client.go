@@ -18,9 +18,10 @@ func main() {
 	ipLocal := net.IPv4(192, 168, 1, 10)
 	//ipLocal := net.IPv4(10, 10, 10, 129)
 	//ipLocal := net.IPv4(127, 0, 0, 1)
-	l := net.UDPAddr{IP: ipLocal, Port: 8002}
+	lAddr := net.UDPAddr{IP: ipLocal, Port: 8002}
 
-	socket, err := net.DialUDP("udp4", &l, &net.UDPAddr{
+	//if you only have one NIC you can just leave &lAddr as nil
+	socket, err := net.DialUDP("udp4", &lAddr, &net.UDPAddr{
 		IP:   ipBcast,
 		Port: conf.BPort,
 	})

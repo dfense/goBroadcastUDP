@@ -24,7 +24,7 @@ var intf []netInterface
 // messages targetted for netmask > than that such as 255.255.255.255!!
 func main() {
 
-	localAddresses()
+	readLocalInterfaces()
 	fmt.Println("Listening for UDP Broadcast Packet")
 
 	socket, err := net.ListenUDP("udp4", &net.UDPAddr{
@@ -54,7 +54,7 @@ func main() {
 
 //simple function to just collect all of theIPNet and interface names of each interface.
 //filter out any that are not IPv4() since that is all we care about for broadcast
-func localAddresses() {
+func readLocalInterfaces() {
 	ifaces, err := net.Interfaces()
 	if err != nil {
 		log.Print(fmt.Errorf("localAddresses: %v\n", err.Error()))
